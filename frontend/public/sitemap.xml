@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://osecom.fr/</loc><priority>1.0</priority></url>
+  <url><loc>https://osecom.fr/services</loc><priority>0.9</priority></url>
+  <url><loc>https://osecom.fr/services/strategy</loc><priority>0.8</priority></url>
+  <url><loc>https://osecom.fr/services/cm</loc><priority>0.8</priority></url>
+  <url><loc>https://osecom.fr/services/ugc</loc><priority>0.8</priority></url>
+  <url><loc>https://osecom.fr/services/acquisition</loc><priority>0.8</priority></url>
+  <url><loc>https://osecom.fr/services/growth</loc><priority>0.8</priority></url>
+  <url><loc>https://osecom.fr/ugc</loc><priority>0.7</priority></url>
+  <url><loc>https://osecom.fr/portfolio</loc><priority>0.7</priority></url>
+  <url><loc>https://osecom.fr/blog</loc><priority>0.6</priority></url>
+  <url><loc>https://osecom.fr/about</loc><priority>0.8</priority></url>
+  <url><loc>https://osecom.fr/contact</loc><priority>0.9</priority></url>
+  <url><loc>https://osecom.fr/legal/mentions</loc><priority>0.3</priority></url>
+  <url><loc>https://osecom.fr/legal/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://osecom.fr/legal/terms</loc><priority>0.3</priority></url>
+  <url><loc>https://osecom.fr/legal/cookies</loc><priority>0.3</priority></url>
+</urlset>

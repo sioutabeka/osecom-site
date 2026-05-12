@@ -1,16 +1,103 @@
-# React + Vite
+# OseCom
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site freelance d'Essia Ben Kheder · Stratégie social media, community management, UGC, acquisition & growth · Paris.
 
-Currently, two official plugins are available:
+Monorepo simple : `frontend/` (React + Vite) + `backend/` (Express + Prisma).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+**Frontend**
+- React 19 · Vite 8 · react-router-dom 7
+- Axios pour le form contact
+- CSS pur en 4 fichiers (mobile-first)
+- ESLint 9
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Backend**
+- Express 5 · Prisma 6 · PostgreSQL (Neon)
+- Brevo (REST) pour les emails
+- HubSpot (REST) pour la sync CRM
 
-## Expanding the ESLint configuration
+## Lancer en local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Terminal 1 — backend
+cd backend
+npm install
+cp .env.example .env   # à créer + remplir
+npm run dev            # → :3001
+
+# Terminal 2 — frontend
+cd frontend
+npm install
+npm run dev            # → :5173
+```
+
+## Commandes
+
+```bash
+# Frontend
+npm run dev        # vite dev
+npm run build      # bundle prod
+npm run lint       # eslint
+npm run preview    # preview build
+
+# Backend
+npm run dev        # nodemon
+npm run start      # node prod
+npx prisma studio  # GUI DB
+```
+
+## Variables d'environnement
+
+**`backend/.env`** (non commité)
+```
+DATABASE_URL=postgresql://...
+BREVO_API_KEY=xkeysib-...
+BREVO_SENDER_EMAIL=contact@osecom.fr
+CONTACT_TO_EMAIL=contact@osecom.fr
+HUBSPOT_ACCESS_TOKEN=pat-eu1-...
+```
+
+**`frontend/.env`** (non commité)
+```
+VITE_API_URL=http://localhost:3001
+```
+
+## Structure
+
+```
+.
+├── frontend/                ← React app
+│   ├── index.html
+│   ├── public/              ← favicon, robots.txt, sitemap.xml
+│   └── src/
+│       ├── App.jsx          ← router (routes + redirections legacy)
+│       ├── main.jsx
+│       ├── osecom/          ← module UI (voir frontend/src/osecom/README.md)
+│       └── styles/          ← base.css, layout.css, components.css, pages.css
+│
+└── backend/                 ← Express API
+    ├── prisma/schema.prisma
+    └── src/
+        ├── server.js
+        ├── routes/
+        ├── controllers/
+        └── services/
+```
+
+Détails frontend dans `frontend/src/osecom/README.md` (où éditer le contenu, ajouter un service, etc.).
+
+## Pages & routes
+
+- `/` Home · `/services` (+ `/services/:slug` × 5) · `/ugc` · `/portfolio` · `/blog` · `/about` · `/contact`
+- `/legal/:slug` → mentions · privacy · terms · cookies
+- Redirections legacy (`/strategy`, `/community-management`, `/privacy-policy`, etc.) → routes canoniques
+
+## API
+
+`POST /api/contact` — voir `backend/src/controllers/contact.controller.js`
+Payload : `{ name, email, businessName, website, budget, service, date, project }` (4 premiers requis).
+
+## License
+
+Tous droits réservés · OseCom · 2026

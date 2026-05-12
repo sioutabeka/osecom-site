@@ -1,0 +1,12 @@
+/* OseCom · main stylesheet entry.
+   Each file below is mobile-first and self-contained:
+   it ships defaults for small screens, then layers larger
+   layouts via `@media (min-width: …)` blocks.
+
+   Load order matters: base tokens → layout shell →
+   reusable components → page-specific styles. */
+
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./pages.css";

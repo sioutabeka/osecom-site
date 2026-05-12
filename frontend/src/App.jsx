@@ -1,53 +1,53 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-// Pages principales
-import HomePage from "./pages/HomePage";
-import AboutPage from "./pages/AboutPage";
-import PortfolioContentPage from "./pages/PortfolioContentPage";
-import ContactPage from "./pages/ContactPage";
-import SocialGrowthPage from "./pages/SocialGrowthPage";
+import Layout from "./osecom/Layout";
+import AboutPage from "./osecom/pages/AboutPage";
+import BlogPage from "./osecom/pages/BlogPage";
+import ContactPage from "./osecom/pages/ContactPage";
+import HomePage from "./osecom/pages/HomePage";
+import LegalPage from "./osecom/pages/LegalPage";
+import NotFoundPage from "./osecom/pages/NotFoundPage";
+import PortfolioPage from "./osecom/pages/PortfolioPage";
+import ServiceDetailPage from "./osecom/pages/ServiceDetailPage";
+import ServicesPage from "./osecom/pages/ServicesPage";
+import UGCPage from "./osecom/pages/UGCPage";
+import { ROUTES } from "./osecom/config/routes";
 
-// Pages légales
-import PrivacyPolicyPage from "./pages/legal/PrivacyPolicyPage";
-import TermsPage from "./pages/legal/TermsPage";
-import ReturnPolicyPage from "./pages/legal/ReturnPolicyPage";
-
-// Landing pages
-import AcquisitionPage from "./pages/landingPages/AcquisitionPage";
-import GrowthPage from "./pages/landingPages/GrowthPage";
-import UGCPage from "./pages/landingPages/UGCPage";
-import CommunityManagementPage from "./pages/landingPages/CommunityManagementPage";
-import StrategyPage from "./pages/landingPages/StrategyPage";
-
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route element={<Layout />}>
+          {/* Canonical routes */}
+          <Route path={ROUTES.home} element={<HomePage />} />
+          <Route path={ROUTES.services} element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
+          <Route path={ROUTES.ugc} element={<UGCPage />} />
+          <Route path={ROUTES.blog} element={<BlogPage />} />
+          <Route path={ROUTES.about} element={<AboutPage />} />
+          <Route path={ROUTES.contact} element={<ContactPage />} />
+          <Route path={ROUTES.portfolio} element={<PortfolioPage />} />
+          <Route path="/legal/:slug" element={<LegalPage />} />
 
-        {/* Pages principales */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/portfolio/content" element={<PortfolioContentPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/social-growth" element={<SocialGrowthPage />} />
+          {/* Legacy redirects — kept so older URLs and inbound links still work */}
+          <Route path="/strategy" element={<Navigate to={ROUTES.service("strategy")} replace />} />
+          <Route path="/community-management" element={<Navigate to={ROUTES.service("cm")} replace />} />
+          <Route path="/acquisition" element={<Navigate to={ROUTES.service("acquisition")} replace />} />
+          <Route path="/growth" element={<Navigate to={ROUTES.service("growth")} replace />} />
+          <Route path="/social-growth" element={<Navigate to={ROUTES.services} replace />} />
+          <Route path="/portfolio/content" element={<Navigate to={ROUTES.ugc} replace />} />
+          <Route path="/portfolio/design" element={<Navigate to={ROUTES.portfolio} replace />} />
+          <Route path="/mentions-legales" element={<Navigate to={ROUTES.legal.mentions} replace />} />
+          <Route path="/privacy-policy" element={<Navigate to={ROUTES.legal.privacy} replace />} />
+          <Route path="/confidentialite" element={<Navigate to={ROUTES.legal.privacy} replace />} />
+          <Route path="/terms" element={<Navigate to={ROUTES.legal.terms} replace />} />
+          <Route path="/cgu" element={<Navigate to={ROUTES.legal.terms} replace />} />
+          <Route path="/cookies" element={<Navigate to={ROUTES.legal.cookies} replace />} />
+          <Route path="/return-policy" element={<Navigate to={ROUTES.legal.terms} replace />} />
 
-        {/* Pages légales */}
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/terms" element={<TermsPage />} />
-        <Route path="/return-policy" element={<ReturnPolicyPage />} />
-
-        {/* Landing pages */}
-        <Route path="/strategy" element={<StrategyPage />} />
-        <Route path="/community-management" element={<CommunityManagementPage />} />
-        <Route path="/acquisition" element={<AcquisitionPage />} />
-        <Route path="/growth" element={<GrowthPage />} />
-        <Route path="/ugc" element={<UGCPage />} />
-
-        <Route path="/contact" element={<ContactPage />} />
-
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
-export default App;
