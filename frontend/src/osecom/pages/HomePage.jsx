@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
+import DualPromise from "../components/DualPromise";
 import IconArrow from "../components/IconArrow";
-import ImpactCarousel from "../components/ImpactCarousel";
 import Marquee from "../components/Marquee";
 import MorphHeadline from "../components/MorphHeadline";
-import Placeholder from "../components/Placeholder";
 import PortfolioStrip from "../components/PortfolioStrip";
+import ServicesOffer from "../components/ServicesOffer";
 import { ROUTES } from "../config/routes";
 import { BRANDS } from "../config/site";
-import essiaHome from "../../assets/essiahome.webp";
 
-const HERO_LINES = ["Je transforme", "vos contenus", "en client."];
+const HERO_LINES = ["Je transforme ", "vos contenus", "en client."];
 
 const TOP_MARQUEE = [
   "Stratégie",
@@ -41,12 +40,10 @@ export default function HomePage() {
       <DualPromise />
       <Signature />
       <Trust />
-      <ImpactCarousel />
+      <ServicesOffer />
       <PortfolioStrip
         title={
-          <h2>
-            Consulte mon <span className="accent">Portfolio</span>
-          </h2>
+          <h2>Consulte mon Portfolio</h2>
         }
       />
       <Marquee items={BOTTOM_MARQUEE} theme="rose" speed={55} dir="right" />
@@ -58,11 +55,11 @@ function Hero() {
   return (
     <section className="hero">
       <div className="hero__meta">
-        <span className="mono">HI · MOI C'EST ESSIA</span>
-        <span className="mono">OSECOM · PARIS</span>
+        <span className="mono">HI · MOI C'EST ESSIA aka Siouta</span>
+        <span className="mono"> · Freelance à PARIS</span>
       </div>
 
-      <MorphHeadline lines={HERO_LINES} accentIdx={1} />
+      <MorphHeadline lines={HERO_LINES} accentIdx={-1} />
 
       <div className="hero__base">
         <p className="hero__sub">
@@ -84,38 +81,8 @@ function Hero() {
         </div>
       </div>
 
-      <div className="hero__portrait" data-parallax="0.15">
-        <Placeholder ratio="3/4" src={essiaHome} alt="Essia, fondatrice d'OseCom" />
-        <span className="hero__portrait-tag">Meet Essia</span>
-      </div>
-
       <div className="hero__chip hero__chip--2" data-parallax="0.25">
         <span className="mono">stratégie · contenu · performance</span>
-      </div>
-    </section>
-  );
-}
-
-function DualPromise() {
-  return (
-    <section className="dual" data-reveal>
-      <div className="dual__card">
-        <span className="dual__mark">LE PROBLÈME</span>
-        <h3>Publier ne suffit plus.</h3>
-        <p>
-          Beaucoup d'entreprises sont présentes sur les réseaux… mais sans
-          réelle stratégie. Le contenu manque de cohérence, la communication de
-          régularité, et les résultats ne suivent pas.
-        </p>
-      </div>
-      <div className="dual__card dual__card--alt">
-        <span className="dual__mark">LA RÉPONSE</span>
-        <h3>Une présence structurée change tout.</h3>
-        <p>
-          Je construis une stratégie social media claire et performante pour
-          transformer vos réseaux en levier de visibilité, d'acquisition et de
-          croissance.
-        </p>
       </div>
     </section>
   );
@@ -126,9 +93,7 @@ function Signature() {
     <section className="signature" data-reveal>
       <div className="signature__head">
         <span className="mono">OFFRE SIGNATURE</span>
-        <h2>
-          Community Management <span className="accent">Stratégique</span>
-        </h2>
+        <h2>Community Management Stratégique</h2>
         <p>Une offre pensée pour déléguer vos réseaux sociaux avec exigence.</p>
       </div>
 

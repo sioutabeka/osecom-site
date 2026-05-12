@@ -169,10 +169,7 @@ function FinalCta({ service }) {
     <section className="srvd-cta" data-reveal>
       <div className="srvd-cta__card">
         <span className="mono">PRÊT À COMMENCER ?</span>
-        <h2>
-          {cta?.title || "On en parle"}{" "}
-          <span className="accent">30 minutes ?</span>
-        </h2>
+        <h2>{cta?.title || "On en parle"} 30 minutes ?</h2>
         <p>
           {cta?.text ||
             "Un appel pour cadrer votre besoin, voir si c'est aligné, et savoir où on peut aller ensemble."}

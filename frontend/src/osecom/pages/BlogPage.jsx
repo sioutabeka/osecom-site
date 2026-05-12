@@ -83,9 +83,7 @@ function BlogHero() {
   return (
     <section className="blog-hero">
       <span className="mono">JOURNAL · BIENTÔT EN LIGNE</span>
-      <h1>
-        Le <span className="accent">journal.</span>
-      </h1>
+      <h1>Le journal.</h1>
       <p>
         Mes notes sur la stratégie sociale, le contenu et la croissance des
         marques. Court, direct, terrain.{" "}
@@ -159,9 +157,7 @@ function NewsletterSubscribe() {
     <section className="blog-subscribe" data-reveal>
       <div className="blog-subscribe__card">
         <span className="mono">NEWSLETTER · 1 EMAIL / SEMAINE</span>
-        <h2>
-          Recevez les notes <span className="accent">directement.</span>
-        </h2>
+        <h2>Recevez les notes directement.</h2>
         <p>
           Une lecture courte, chaque jeudi. Pas de bruit, juste ce qui change la
           donne.

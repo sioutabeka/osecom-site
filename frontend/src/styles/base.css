@@ -7,8 +7,9 @@
 
 :root{
   /* Colors */
-  --cream: #F3EAD0;
-  --paper: #FFF9E8;
+  --bg:    #F7F5EB;   /* page background — neutral cream */
+  --cream: #F3EAD0;   /* warm accent — used on break sections & as text on dark cards */
+  --paper: #FFF9E8;   /* card background — slightly warmer than --bg */
   --olive: #7C8136;
   --olive-d: #5C611F;
   --rose:  #F5BADF;
@@ -21,6 +22,7 @@
 
   /* Typography */
   --sans:  "Hanken Grotesk", system-ui, sans-serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
   --mono:  "JetBrains Mono", ui-monospace, monospace;
 
   /* Layout */
@@ -31,7 +33,7 @@
 /* Reset */
 *{ box-sizing:border-box; margin:0; padding:0; }
 html,body{
-  background:var(--cream); color:var(--brown);
+  background:var(--bg); color:var(--brown);
   font-family:var(--sans); font-size:15px;
   -webkit-font-smoothing:antialiased;
 }
@@ -47,3 +49,16 @@ img{ max-width:100%; display:block; }
 }
 .mono--sm{ font-size:10px; }
 .accent{ color:var(--olive); }
+
+/* Warm break section.
+   Adds a full-viewport-width cream background behind a section,
+   even when the section itself has a centered max-width. */
+.section--warm{
+  position:relative; isolation:isolate;
+}
+.section--warm::before{
+  content:""; position:absolute;
+  top:0; bottom:0; left:50%;
+  width:100vw; transform:translateX(-50%);
+  background:var(--cream); z-index:-1;
+}

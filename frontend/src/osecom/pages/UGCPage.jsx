@@ -78,7 +78,7 @@ function UgcHero() {
         <span className="mono">CONTENT & INFLUENCING</span>
         <h1>
           Content
-          <br />& <span className="accent">Influencing.</span>
+          <br />& Influencing.
         </h1>
         <p>
           Je crée du contenu qui mêle design, lifestyle et tout ce qui gravite
@@ -116,10 +116,7 @@ function PortfolioSection({ section }) {
   return (
     <section className="ugc-design" data-reveal>
       <span className={`pill pill--${section.pillTone} pill--inline`}>{section.pill}</span>
-      <h2>
-        {titleA}
-        <span className="accent">{titleB}.</span>
-      </h2>
+      <h2>{titleA}{titleB}.</h2>
       <p>{section.description}</p>
       <div className="ugc-design__grid">
         {section.tiles.map((tile, i) => (

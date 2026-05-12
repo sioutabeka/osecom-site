@@ -7,7 +7,7 @@ export default function NotFoundPage() {
       <section className="nf">
         <span className="mono">ERROR 404 · PAGE INTROUVABLE</span>
         <h1>
-          On a <span className="accent">cherché.</span>
+          On a cherché.
           <br />
           Pas trouvé.
         </h1>

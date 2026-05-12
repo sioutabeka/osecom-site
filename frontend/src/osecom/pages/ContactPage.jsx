@@ -154,9 +154,7 @@ function ContactInfo() {
   return (
     <div className="ct__left">
       <span className="mono">BOOK A CALL · 30 MIN · FREE</span>
-      <h1>
-        Parlons de votre <span className="accent">projet.</span>
-      </h1>
+      <h1>Parlons de votre projet.</h1>
       <p>
         Un appel de 30 minutes pour cerner vos enjeux et voir si on est faits
         pour collaborer.

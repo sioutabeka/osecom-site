@@ -42,9 +42,7 @@ export default function ImpactCarousel() {
     <section className="impact" data-reveal>
       <div className="impact__head">
         <span className="mono">SELECTED WORK</span>
-        <h2>
-          A few ways I create <span className="accent">impact</span> for brands
-        </h2>
+        <h2>A few ways I create impact for brands</h2>
       </div>
 
       <div className="impact__showcase">

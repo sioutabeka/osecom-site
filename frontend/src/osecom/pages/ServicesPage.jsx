@@ -22,8 +22,7 @@ function ServicesHero() {
     <section className="srv-hero">
       <span className="mono">SOCIAL GROWTH ISN'T AN OPTION</span>
       <h1 className="srv-hero__title">
-        Accélérez votre croissance en utilisant{" "}
-        <span className="accent">les réseaux sociaux !</span>
+        Accélérez votre croissance en utilisant les réseaux sociaux !
       </h1>
       <p>
         La stratégie d'image, de communication et de marketing digital est le
@@ -87,8 +86,7 @@ function ServicesFoot() {
     <section className="srv-foot">
       <span className="mono">NEED CLARITY BEFORE SCALING ?</span>
       <h2>
-        Vous ne savez pas encore exactement ce qu'il vous faut ?{" "}
-        <span className="accent">Et c'est OK.</span>
+        Vous ne savez pas encore exactement ce qu'il vous faut ? Et c'est OK.
       </h2>
       <p>
         On regarde ensemble où vous en êtes, ce qui bloque aujourd'hui, et quel

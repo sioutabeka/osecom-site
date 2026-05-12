@@ -54,8 +54,8 @@
 
 /* ── Morphing headline (per-char enter animation) ─────────── */
 .morph{
-  font-family:var(--sans); font-weight:700;
-  font-size:clamp(56px, 9vw, 132px);
+  font-family:var(--serif); font-weight:500;
+  font-size:clamp(44px, 7vw, 92px);
   line-height:.92; letter-spacing:-.035em;
   color:var(--brown); margin:24px 0 36px;
 }
@@ -94,7 +94,7 @@
 }
 .marquee__item{
   display:inline-flex; align-items:center; gap:48px;
-  font-family:var(--sans); font-weight:600;
+  font-family:var(--serif); font-weight:500;
   font-size:clamp(28px, 4vw, 56px); letter-spacing:-.02em;
 }
 .marquee__sep{ flex:none; opacity:.7; }

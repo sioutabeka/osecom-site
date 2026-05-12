@@ -19,7 +19,7 @@ export default function MorphHeadline({ lines, accentIdx = 1 }) {
               }
               style={{ "--d": lineIndex * 0.4 + charIndex * 0.025 + "s" }}
             >
-              {char === " " ? " " : char}
+              {char === " " ? " " : char}
             </span>
           ))}
         </span>

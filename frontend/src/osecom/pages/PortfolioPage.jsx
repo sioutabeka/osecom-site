@@ -20,7 +20,7 @@ function PortfolioHero() {
     <section className="pf-hero">
       <span className="mono">OSECOM STUDIO · CASE STUDIES</span>
       <h1>
-        The <span className="accent">Community Management</span>
+        The Community Management
         <br />
         Portfolio.
       </h1>
@@ -72,9 +72,7 @@ function PortfolioCta() {
     <section className="pf-cta" data-reveal>
       <div className="pf-cta__card">
         <span className="mono">VOUS RECONNAISSEZ VOTRE MARQUE ICI ?</span>
-        <h2>
-          On construit la <span className="accent">prochaine ?</span>
-        </h2>
+        <h2>On construit la prochaine ?</h2>
         <Link to={ROUTES.contact} className="btn btn--rose">
           Discuter de votre projet
         </Link>

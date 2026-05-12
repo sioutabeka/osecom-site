@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Marquee from "../components/Marquee";
 import Placeholder from "../components/Placeholder";
 import PortfolioStrip from "../components/PortfolioStrip";
+import ServicesOffer from "../components/ServicesOffer";
 import { ROUTES } from "../config/routes";
 import aboutHero from "../../assets/about-hero.jpg";
 import aboutStory from "../../assets/about-story.jpg";
@@ -20,15 +21,6 @@ const PILLARS = [
   ["03", "Une présence structurée", "Installer un système qui performe dans le temps."],
 ];
 
-const SERVICES_BAR = [
-  ["Community Management", "rose"],
-  ["Social Media Strategy", "olive"],
-  ["UGC Content", "sky"],
-  ["Acquisition", "rose"],
-  ["Digital Strategy", "cream"],
-  ["Growth", "olive"],
-];
-
 const ABOUT_MARQUEE = [
   "Stratégie, contenu, acquisition & tout ce qu'il faut pour faire rentrer des clients",
 ];
@@ -39,9 +31,7 @@ export default function AboutPage() {
       <section className="about-hero">
         <div className="about-hero__text">
           <span className="mono">HI, MOI C'EST ESSIA</span>
-          <h1>
-            I help brands grow <span className="accent">through content.</span>
-          </h1>
+          <h1>I help brands grow through content.</h1>
           <p>
             J'aide les marques à développer leur présence en ligne grâce à une
             stratégie claire et du contenu qui capte vraiment l'attention.
@@ -61,9 +51,7 @@ export default function AboutPage() {
           <Placeholder ratio="4/5" src={aboutStory} alt="Essia au travail" />
         </div>
         <div className="about-philo__body">
-          <h2>
-            Mon parcours & mon <span className="accent">approche.</span>
-          </h2>
+          <h2>Mon parcours & mon approche.</h2>
           <p>
             Issue du marketing digital, du growth et de l'acquisition, j'ai
             construit mon approche à la croisée de la stratégie, du contenu et
@@ -84,20 +72,7 @@ export default function AboutPage() {
 
       <Marquee items={ABOUT_MARQUEE} theme="olive" speed={50} />
 
-      <section className="about-services" data-reveal>
-        <span className="mono">SERVICES I OFFER</span>
-        <div className="about-services__row">
-          {SERVICES_BAR.map(([label, tone]) => (
-            <span key={label} className="about-services__item">
-              <span>{label}</span>
-              <span className={`about-services__flower about-services__flower--${tone}`}>
-                ✿
-              </span>
-            </span>
-          ))}
-          <span className="about-services__more">& More</span>
-        </div>
-      </section>
+      <ServicesOffer />
 
       <section className="about-facts" data-reveal>
         {FACTS.map(([eyebrow, value], i) => (
@@ -114,9 +89,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-pillars" data-reveal>
-        <h2>
-          Derrière <span className="accent">OseCom.</span>
-        </h2>
+        <h2>Derrière OseCom.</h2>
         <p className="about-pillars__intro">
           OseCom est né d'une conviction simple : ce qui fonctionne, c'est
           l'alignement entre stratégie, contenu et constance.
@@ -139,16 +112,12 @@ export default function AboutPage() {
 
       <PortfolioStrip
         title={
-          <h2>
-            Consulte mon <span className="accent">Portfolio</span>
-          </h2>
+          <h2>Consulte mon Portfolio</h2>
         }
       />
 
       <section className="about-cta">
-        <h2>
-          Travaillons <span className="accent">ensemble.</span>
-        </h2>
+        <h2>Travaillons ensemble.</h2>
         <Link to={ROUTES.contact} className="btn btn--olive">
           Prendre rendez-vous
         </Link>

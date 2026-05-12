@@ -34,9 +34,7 @@ function FollowAlong() {
     <section className="ft__social">
       <div className="ft__social-head">
         <span className="mono">FOLLOW ALONG</span>
-        <h2>
-          Restons <span className="accent">connectés.</span>
-        </h2>
+        <h2>Restons connectés.</h2>
       </div>
       <div className="ft__social-grid">
         {FOOTER_SOCIALS.map((s) => (
