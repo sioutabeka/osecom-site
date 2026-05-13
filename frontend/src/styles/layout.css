@@ -38,7 +38,7 @@
 @keyframes bar{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
 
 /* ── Logos sprinkled across the app ───────────────────────── */
-.brand__logo{ height:36px; width:auto; transition:transform .4s cubic-bezier(.3,1.5,.6,1); }
+.brand__logo{ height:30px; width:auto; transition:transform .4s cubic-bezier(.3,1.5,.6,1); }
 .brand:hover .brand__logo{ transform:rotate(-6deg) scale(1.06); }
 .ugc-collab__logo{ height:56px; width:auto; margin-bottom:14px; }
 .ft__logo{ height:80px; width:auto; }
@@ -101,7 +101,7 @@
 }
 .nav__inner{
   max-width:var(--maxw); margin:0 auto;
-  padding:12px var(--pad);
+  padding:8px var(--pad);
   display:grid; grid-template-columns:auto 1fr auto;
   align-items:center; gap:16px;
 }
@@ -136,7 +136,7 @@
 .nav__cta:hover{ transform:translateY(-2px); background:var(--rose-d); }
 
 @media (min-width: 980px){
-  .nav__inner{ padding:14px var(--pad); gap:24px; }
+  .nav__inner{ padding:10px var(--pad); gap:24px; }
   .nav__burger{ display:none; }
   .nav__links{
     display:flex; gap:32px; justify-content:center;
@@ -149,7 +149,7 @@
   .nav__link:hover, .nav__link.is-active{ color:var(--brown); }
   .nav__link.is-active{ font-weight:600; }
   .nav__cta{ display:inline-flex; }
-  .brand__logo{ height:42px; }
+  .brand__logo{ height:36px; }
 }
 
 /* ── Mobile drawer (fullscreen menu) ──────────────────────── */
@@ -304,7 +304,7 @@
   .ft__social-name{ font-size:28px; }
   .ft__logo{ height:100px; }
   .ugc-collab__logo{ height:64px; }
-  .brand__logo{ height:42px; }
+  .brand__logo{ height:36px; }
   .curtain__logo{ width:160px; }
   .loader__logo{ width:180px; }
   .loader__bar{ width:200px; }
