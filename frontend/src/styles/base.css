@@ -5,6 +5,28 @@
    - Global utilities (.mono, .accent)
    ============================================================ */
 
+/* Open Sauce Sans — self-hosted from /public/fonts (not on Google Fonts). */
+@font-face{
+  font-family:"Open Sauce Sans"; font-style:normal; font-weight:400;
+  font-display:swap;
+  src:url("/fonts/open-sauce-sans-400.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Open Sauce Sans"; font-style:normal; font-weight:500;
+  font-display:swap;
+  src:url("/fonts/open-sauce-sans-500.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Open Sauce Sans"; font-style:normal; font-weight:600;
+  font-display:swap;
+  src:url("/fonts/open-sauce-sans-600.woff2") format("woff2");
+}
+@font-face{
+  font-family:"Open Sauce Sans"; font-style:normal; font-weight:700;
+  font-display:swap;
+  src:url("/fonts/open-sauce-sans-700.woff2") format("woff2");
+}
+
 :root{
   /* Colors */
   --bg:    #F7F5EB;   /* page background — neutral cream */
@@ -21,9 +43,9 @@
   --yellow:#F0E5A8;
 
   /* Typography */
-  --sans:  "Hanken Grotesk", system-ui, sans-serif;
+  --sans:  "Open Sauce Sans", system-ui, sans-serif;
   --serif: "Playfair Display", Georgia, serif;
-  --mono:  "JetBrains Mono", ui-monospace, monospace;
+  --mono:  "Public Sans", system-ui, sans-serif;
 
   /* Layout */
   --pad: clamp(20px, 4vw, 80px);
