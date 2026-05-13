@@ -41,16 +41,37 @@ export function useHeroDrift(sectionRef, textRef, mediaRef, maxShift = 36) {
     const media = mediaRef.current;
     if (!section || !text || !media) return;
 
+    // On mobile the hero columns stack vertically at full width — a
+    // horizontal drift would push them past the viewport and cause a
+    // page-wide horizontal scroll.
+    const mql = window.matchMedia("(max-width: 860px)");
+    const reset = () => {
+      text.style.transform = "";
+      media.style.transform = "";
+    };
+
+    let active = !mql.matches;
     const onScroll = () => {
+      if (!active) return;
       const rect = section.getBoundingClientRect();
       const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
       const shift = progress * maxShift;
       text.style.transform = `translate3d(${shift}px, 0, 0)`;
       media.style.transform = `translate3d(${-shift}px, 0, 0)`;
     };
-    onScroll();
+    const onChange = (e) => {
+      active = !e.matches;
+      if (!active) reset();
+      else onScroll();
+    };
+    if (!active) reset();
+    else onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    mql.addEventListener("change", onChange);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      mql.removeEventListener("change", onChange);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 }
@@ -58,6 +79,8 @@ export function useHeroDrift(sectionRef, textRef, mediaRef, maxShift = 36) {
 /**
  * Translates any `[data-parallax="<factor>"]` element vertically on
  * scroll. A factor of 0.15 means the element moves at 15% of scroll speed.
+ * Writes the offset to a `--py` CSS custom property so the element's own
+ * transform (rotation, etc.) is preserved — the CSS composes them.
  */
 export function useParallax(deps = []) {
   useEffect(() => {
@@ -66,7 +89,7 @@ export function useParallax(deps = []) {
       const y = window.scrollY;
       els.forEach((el) => {
         const factor = parseFloat(el.getAttribute("data-parallax")) || 0;
-        el.style.transform = `translate3d(0, ${y * factor}px, 0)`;
+        el.style.setProperty("--py", `${y * factor}px`);
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });

@@ -216,7 +216,7 @@
   display:grid; grid-template-columns:1fr; gap:40px;
   padding-bottom:50px;
 }
-.ft__col{ display:flex; flex-direction:column; gap:10px; align-items:flex-start; }
+.ft__col{ display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; }
 .ft__col .mono{ margin-bottom:8px; }
 .ft__col button, .ft__col a{
   font-family:var(--sans); font-size:16px; font-weight:500;
@@ -228,12 +228,12 @@
   display:flex; flex-direction:column; align-items:center; gap:14px;
 }
 .ft__base{
-  border-top:1px solid rgba(42,24,16,.15);
   padding:18px var(--pad); margin:0 calc(var(--pad) * -1);
   background:var(--sky);
   display:flex; flex-direction:column;
-  align-items:flex-start; gap:14px; flex-wrap:wrap;
+  align-items:center; text-align:center; gap:14px; flex-wrap:wrap;
 }
+.ft__legal{ justify-content:center; }
 .ft__legal{ display:flex; gap:14px; flex-wrap:wrap; }
 .ft__legal a{ color:var(--brown-s); transition:color .2s; }
 .ft__legal a:hover{ color:var(--brown); }
@@ -244,22 +244,22 @@
     grid-template-columns:1fr auto 1fr; gap:60px;
     padding-bottom:60px;
   }
+  .ft__col{ align-items:flex-start; text-align:left; }
   .ft__col--right{ align-items:flex-end; text-align:right; }
   .ft__base{
-    flex-direction:row; align-items:center;
+    flex-direction:row; align-items:center; text-align:left;
     justify-content:space-between; gap:20px;
   }
-  .ft__legal{ gap:18px; }
+  .ft__legal{ gap:18px; justify-content:flex-start; }
 }
 
 /* ── Footer · social section ──────────────────────────────── */
 .ft__social{
   max-width:var(--maxw); margin:0 auto 40px;
   padding-bottom:50px;
-  border-bottom:1px solid rgba(42,24,16,.12);
 }
 .ft__social-head{
-  display:flex; flex-direction:column; align-items:flex-start;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
   gap:14px; margin-bottom:28px;
 }
 .ft__social-head .mono{ color:var(--brown-soft); }
@@ -296,7 +296,8 @@
 @media (min-width: 980px){
   .ft__social{ margin-bottom:60px; padding-bottom:80px; }
   .ft__social-head{
-    flex-direction:row; align-items:flex-end; justify-content:space-between;
+    flex-direction:row; align-items:flex-end; text-align:left;
+    justify-content:space-between;
     gap:40px; margin-bottom:36px;
   }
   .ft__social-grid{ grid-template-columns:repeat(3, 1fr); }

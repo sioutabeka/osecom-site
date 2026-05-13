@@ -74,9 +74,6 @@ function FooterBrand() {
   return (
     <div className="ft__center">
       <img src={logo} alt={SITE.name} className="ft__logo" />
-      <span className="ft__city mono">
-        {SITE.city.toUpperCase()} · {SITE.region}
-      </span>
     </div>
   );
 }

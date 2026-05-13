@@ -1,10 +1,11 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ROUTES } from "../config/routes";
+import PinnedServicesMobile from "./PinnedServicesMobile";
 
-const STEPS = [
+export const STEPS = [
   {
     num: "01",
     label: "Stratégie",
@@ -39,12 +40,32 @@ const STEPS = [
   },
 ];
 
+const MOBILE_MQ = "(max-width: 860px)";
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia(MOBILE_MQ).matches : false
+  );
+  useEffect(() => {
+    const mql = window.matchMedia(MOBILE_MQ);
+    const onChange = (e) => setMobile(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
+  return mobile;
+}
+
+export default function PinnedServices() {
+  const isMobile = useIsMobile();
+  return isMobile ? <PinnedServicesMobile /> : <PinnedServicesDesktop />;
+}
+
 /**
- * Pinned services showcase, cyberscope-style.
+ * Pinned services showcase, cyberscope-style. Desktop only.
  * The section pins for ~4 viewports while a circular media tile and
  * the right-hand copy crossfade between each service step.
  */
-export default function PinnedServices() {
+function PinnedServicesDesktop() {
   const sectionRef = useRef(null);
   const pinRef = useRef(null);
   const mediaRefs = useRef([]);
