@@ -216,6 +216,16 @@
   will-change:transform, opacity;
   margin:0;
 }
+/* Pre-hide every step except the first so the section isn't a brown
+   stack of overlapping content before GSAP applies its inline autoAlpha.
+   Once GSAP sets inline styles (higher specificity), this is overridden. */
+.pin-services__circle:nth-child(n+2),
+.pin-services__num:nth-child(n+2),
+.pin-services__label:nth-child(n+2),
+.pin-services__title:nth-child(n+2),
+.pin-services__text:nth-child(n+2){
+  visibility:hidden; opacity:0;
+}
 .pin-services__texts{ margin-top:8px; }
 
 .pin-services__num{

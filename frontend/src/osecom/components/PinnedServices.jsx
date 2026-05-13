@@ -58,47 +58,56 @@ export default function PinnedServices() {
 
   useLayoutEffect(() => {
     let cancelled = false;
-    const ctx = gsap.context(() => {
-      const total = STEPS.length;
+    let ctx;
 
-      const measure = (el) => {
-        const prev = el.style.cssText;
-        el.style.cssText = "visibility:visible;opacity:1;transform:none;position:static";
-        const h = el.getBoundingClientRect().height;
-        el.style.cssText = prev;
-        return h;
-      };
+    // Any ScrollTrigger still pinned to this section is a leak from a
+    // previous mount (StrictMode replay, HMR Fast Refresh, etc.). Kill
+    // them before/after our own lifecycle so they can't fight with us.
+    const killStrayTriggers = () => {
+      const section = sectionRef.current;
+      const pin = pinRef.current;
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === section || st.pin === pin) st.kill();
+      });
+    };
 
-      let currentTl = null;
+    const measure = (el) => {
+      const prev = el.style.cssText;
+      el.style.cssText =
+        "visibility:visible;opacity:1;transform:none;position:static";
+      const h = el.getBoundingClientRect().height;
+      el.style.cssText = prev;
+      return h;
+    };
 
-      const build = () => {
-        // StrictMode in dev re-runs this effect; the queued fonts.ready
-        // promise from the first mount must not build into a dead context.
-        if (cancelled) return;
-        // Tear down the previous timeline + its ScrollTrigger so the rebuild
-        // doesn't stack two pinning controllers on the same section.
-        if (currentTl) {
-          currentTl.scrollTrigger?.kill();
-          currentTl.kill();
-        }
+    const setup = () => {
+      if (cancelled || !sectionRef.current) return;
+      killStrayTriggers();
 
+      ctx = gsap.context(() => {
+        const total = STEPS.length;
         const titleHeights = titleRefs.current.map(measure);
         const textHeights = textRefs.current.map(measure);
 
-        // Initial state: only step 0 visible, containers sized to step 0.
         mediaRefs.current.forEach((el, i) => {
-          gsap.set(el, { autoAlpha: i === 0 ? 1 : 0, scale: i === 0 ? 1 : 1.1 });
+          gsap.set(el, {
+            autoAlpha: i === 0 ? 1 : 0,
+            scale: i === 0 ? 1 : 1.1,
+          });
         });
         [labelRefs, titleRefs, textRefs, numRefs].forEach((group) => {
           group.current.forEach((el, i) => {
-            gsap.set(el, { autoAlpha: i === 0 ? 1 : 0, yPercent: i === 0 ? 0 : 40 });
+            gsap.set(el, {
+              autoAlpha: i === 0 ? 1 : 0,
+              yPercent: i === 0 ? 0 : 40,
+            });
           });
         });
         gsap.set(titlesBoxRef.current, { height: titleHeights[0] });
         gsap.set(textsBoxRef.current, { height: textHeights[0] });
         gsap.set(progressRef.current, { "--progress": "0%" });
 
-        currentTl = gsap.timeline({
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
@@ -113,7 +122,7 @@ export default function PinnedServices() {
 
         for (let i = 1; i < total; i++) {
           const at = `+=1`;
-          currentTl
+          tl
             .to(mediaRefs.current[i - 1], { autoAlpha: 0, scale: 0.85, duration: 1 }, at)
             .to(mediaRefs.current[i], { autoAlpha: 1, scale: 1, duration: 1 }, "<")
             .to(labelRefs.current[i - 1], { autoAlpha: 0, yPercent: -40, duration: 1 }, "<")
@@ -128,18 +137,24 @@ export default function PinnedServices() {
             .to(textsBoxRef.current, { height: textHeights[i], duration: 1, ease: "power2.inOut" }, "<")
             .to(progressRef.current, { "--progress": `${(i / (total - 1)) * 100}%`, duration: 1 }, "<");
         }
-      };
+      }, sectionRef);
 
-      // First build with whatever fonts are available right now (may be the
-      // serif fallback). Then rebuild once Cormorant is actually ready so the
-      // measured heights reflect the real glyph metrics.
-      build();
-      document.fonts?.ready?.then(build);
-    }, sectionRef);
+      // Force ScrollTrigger to recompute now that our pin is in place;
+      // otherwise Lenis's smooth scroll position can be out of sync.
+      ScrollTrigger.refresh();
+    };
+
+    // Single setup, gated on fonts.ready so we measure with real glyph
+    // metrics from the first frame — no rebuild needed. Race a 2s
+    // timeout so we don't deadlock if a font request hangs.
+    const ready = document.fonts?.ready ?? Promise.resolve();
+    const timeout = new Promise((r) => setTimeout(r, 2000));
+    Promise.race([ready, timeout]).then(setup);
 
     return () => {
       cancelled = true;
-      ctx.revert();
+      ctx?.revert();
+      killStrayTriggers();
     };
   }, []);
 
