@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import DualPromise from "../components/DualPromise";
 import IconArrow from "../components/IconArrow";
 import MorphHeadline from "../components/MorphHeadline";
+import PinnedServices from "../components/PinnedServices";
 import PortfolioStrip from "../components/PortfolioStrip";
 import ServicesOffer from "../components/ServicesOffer";
 import { ROUTES } from "../config/routes";
@@ -23,6 +24,7 @@ export default function HomePage() {
       <DualPromise />
       <Signature />
       <Trust />
+      <PinnedServices />
       <ServicesOffer />
       <PortfolioStrip
         title={
