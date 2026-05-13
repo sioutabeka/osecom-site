@@ -5,8 +5,8 @@ export const SITE = {
   founder: "Essia Ben Kheder",
   city: "Paris",
   region: "75",
-  email: "contact@osecom.fr",
-  emailHref: "mailto:contact@osecom.fr",
+  email: "contact@osecom.plus",
+  emailHref: "mailto:contact@osecom.plus",
   copyright:
     "© 2026 OSECOM · STRATÉGIE DIGITALE & COMMUNITY MANAGEMENT À PARIS",
 };

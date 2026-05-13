@@ -19,7 +19,7 @@ export const LEGAL = {
           "Adresse : [À COMPLÉTER — adresse postale complète]",
           "SIRET : [À COMPLÉTER — numéro à 14 chiffres]",
           "N° TVA intracommunautaire : [À COMPLÉTER si assujettie]",
-          "Email : contact@osecom.fr",
+          "Email : contact@osecom.plus",
           "Directrice de la publication : Essia Ben Kheder",
         ],
       },
@@ -50,7 +50,7 @@ export const LEGAL = {
       {
         h: "Contact",
         body: [
-          "Pour toute question concernant ces mentions légales, vous pouvez écrire à contact@osecom.fr.",
+          "Pour toute question concernant ces mentions légales, vous pouvez écrire à contact@osecom.plus.",
         ],
       },
     ],
@@ -67,7 +67,7 @@ export const LEGAL = {
         h: "Responsable du traitement",
         body: [
           "Le responsable du traitement des données collectées sur le site est Essia Ben Kheder, agissant sous le nom commercial OseCom.",
-          "Contact : contact@osecom.fr",
+          "Contact : contact@osecom.plus",
         ],
       },
       {
@@ -142,7 +142,7 @@ export const LEGAL = {
       {
         h: "Exercer vos droits",
         body: [
-          "Pour exercer vos droits, écrivez à contact@osecom.fr en précisant l'objet de votre demande. Une réponse vous sera apportée dans un délai maximal d'un mois.",
+          "Pour exercer vos droits, écrivez à contact@osecom.plus en précisant l'objet de votre demande. Une réponse vous sera apportée dans un délai maximal d'un mois.",
         ],
       },
       {
@@ -217,7 +217,7 @@ export const LEGAL = {
       {
         h: "Contact",
         body: [
-          "Pour toute question relative à ces CGU, écrivez à contact@osecom.fr.",
+          "Pour toute question relative à ces CGU, écrivez à contact@osecom.plus.",
         ],
       },
     ],
@@ -261,7 +261,7 @@ export const LEGAL = {
         list: [
           "Via les paramètres de votre navigateur (Chrome, Firefox, Safari, Edge)",
           "En supprimant les cookies déjà déposés depuis votre navigateur",
-          "En nous écrivant à contact@osecom.fr",
+          "En nous écrivant à contact@osecom.plus",
         ],
       },
       {
