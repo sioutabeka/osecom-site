@@ -6,7 +6,6 @@ import Footer from "./components/Footer";
 import Loader from "./components/Loader";
 import MeshBg from "./components/MeshBg";
 import Nav from "./components/Nav";
-import TopBanner from "./components/TopBanner";
 import { useParallax, useReveal } from "./lib/hooks";
 import { TIMING } from "./config/timing";
 
@@ -64,7 +63,6 @@ export default function Layout() {
     <>
       <Loader done={!loading} />
       <MeshBg />
-      <TopBanner />
       <Nav />
       <div className={"page-wrap " + (transitioning ? "is-trans" : "")}>
         <Outlet />

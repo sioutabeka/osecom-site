@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Marquee from "../components/Marquee";
 import Placeholder from "../components/Placeholder";
 import PortfolioStrip from "../components/PortfolioStrip";
 import ServicesOffer from "../components/ServicesOffer";
@@ -19,10 +18,6 @@ const PILLARS = [
   ["01", "Une vision claire", "Comprendre la marque, son marché, son audience, avant de produire."],
   ["02", "Un contenu pensé", "Créer un contenu aligné avec votre image et votre voix."],
   ["03", "Une présence structurée", "Installer un système qui performe dans le temps."],
-];
-
-const ABOUT_MARQUEE = [
-  "Stratégie, contenu, acquisition & tout ce qu'il faut pour faire rentrer des clients",
 ];
 
 export default function AboutPage() {
@@ -69,8 +64,6 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
-
-      <Marquee items={ABOUT_MARQUEE} theme="olive" speed={50} />
 
       <ServicesOffer />
 

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import DualPromise from "../components/DualPromise";
 import IconArrow from "../components/IconArrow";
-import Marquee from "../components/Marquee";
 import MorphHeadline from "../components/MorphHeadline";
 import PortfolioStrip from "../components/PortfolioStrip";
 import ServicesOffer from "../components/ServicesOffer";
@@ -9,21 +8,6 @@ import { ROUTES } from "../config/routes";
 import { BRANDS } from "../config/site";
 
 const HERO_LINES = ["Je transforme ", "vos contenus", "en client."];
-
-const TOP_MARQUEE = [
-  "Stratégie",
-  "Contenu",
-  "Acquisition",
-  "Community",
-  "UGC",
-  "Growth",
-  "Brand",
-  "Performance",
-];
-
-const BOTTOM_MARQUEE = [
-  "Stratégie, contenu, acquisition & tout ce qu'il faut pour faire rentrer des clients",
-];
 
 const SIGNATURE_PILLARS = [
   { title: "Stratégie", text: "Benchmark, positionnement, ligne éditoriale et direction visuelle." },
@@ -36,7 +20,6 @@ export default function HomePage() {
   return (
     <main className="page page--home">
       <Hero />
-      <Marquee items={TOP_MARQUEE} theme="olive" speed={45} />
       <DualPromise />
       <Signature />
       <Trust />
@@ -46,7 +29,6 @@ export default function HomePage() {
           <h2>Consulte mon Portfolio</h2>
         }
       />
-      <Marquee items={BOTTOM_MARQUEE} theme="rose" speed={55} dir="right" />
     </main>
   );
 }
