@@ -33,7 +33,9 @@ export default function DualPromise() {
 
       <div className="dv1__after">
         <span className="dv1__tag mono">AVEC STRATÉGIE</span>
-        <h3 className="dv1__title">Un système. Une marque qui convertit.</h3>
+        <h3 className="dv1__title">
+          Un système. Une marque <span className="dv1__title-accent">qui convertit</span>.
+        </h3>
         <p>
           Chaque post a une intention. Chaque format a une raison. Et vos
           réseaux deviennent un vrai levier de business.
