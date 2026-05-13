@@ -147,7 +147,6 @@
     transition:color .25s;
   }
   .nav__link:hover, .nav__link.is-active{ color:var(--brown); }
-  .nav__link.is-active{ font-weight:600; }
   .nav__cta{ display:inline-flex; }
   .brand__logo{ height:36px; }
 }
