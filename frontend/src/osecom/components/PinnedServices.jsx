@@ -57,6 +57,7 @@ export default function PinnedServices() {
   const progressRef = useRef(null);
 
   useLayoutEffect(() => {
+    let cancelled = false;
     const ctx = gsap.context(() => {
       const total = STEPS.length;
 
@@ -71,6 +72,9 @@ export default function PinnedServices() {
       let currentTl = null;
 
       const build = () => {
+        // StrictMode in dev re-runs this effect; the queued fonts.ready
+        // promise from the first mount must not build into a dead context.
+        if (cancelled) return;
         // Tear down the previous timeline + its ScrollTrigger so the rebuild
         // doesn't stack two pinning controllers on the same section.
         if (currentTl) {
@@ -133,7 +137,10 @@ export default function PinnedServices() {
       document.fonts?.ready?.then(build);
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      cancelled = true;
+      ctx.revert();
+    };
   }, []);
 
   return (
