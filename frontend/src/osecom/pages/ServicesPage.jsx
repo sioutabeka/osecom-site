@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import aboutHero from "../../assets/about-hero.jpg";
+import logo from "../../assets/logo-osecom.png";
 import IconArrow from "../components/IconArrow";
 import MorphHeadline from "../components/MorphHeadline";
 import WordRotator from "../components/WordRotator";
@@ -20,8 +21,8 @@ export default function ServicesPage() {
     <main className="page page--services">
       <ServicesHero />
       <div className="srv-list">
-        {SERVICES.map((service) => (
-          <ServiceCard key={service.slug} service={service} />
+        {SERVICES.map((service, i) => (
+          <ServiceCard key={service.slug} service={service} index={i} />
         ))}
       </div>
       <ServicesFoot />
@@ -65,9 +66,13 @@ function ServicesHero() {
   );
 }
 
-function ServiceCard({ service }) {
+function ServiceCard({ service, index }) {
   return (
-    <article className={`srv srv--${service.tone}`} data-reveal>
+    <article
+      className={`srv srv--${service.tone}`}
+      data-reveal
+      style={{ "--i": index }}
+    >
       <div className="srv__head">
         <span className="mono">{service.tag}</span>
         <h2>{service.title}</h2>
@@ -109,20 +114,18 @@ function ServiceCard({ service }) {
 function ServicesFoot() {
   return (
     <section className="srv-foot">
-      <span className="mono">NEED CLARITY BEFORE SCALING ?</span>
-      <h2>
-        Vous ne savez pas encore exactement ce qu'il vous faut ? Et c'est OK.
-      </h2>
-      <p>
-        On regarde ensemble où vous en êtes, ce qui bloque aujourd'hui, et quel
-        levier activer en priorité.
-      </p>
-      <div className="srv-foot__cta">
-        <Link to={ROUTES.contact} className="btn btn--brown">
+      <div className="srv-foot__card">
+        <img src={logo} alt="" className="srv-foot__logo" />
+        <span className="mono">NEED CLARITY BEFORE SCALING ?</span>
+        <h2>
+          Vous ne savez pas encore exactement ce qu'il vous faut ? Et c'est OK.
+        </h2>
+        <p>
+          On regarde ensemble où vous en êtes, ce qui bloque aujourd'hui, et
+          quel levier activer en priorité.
+        </p>
+        <Link to={ROUTES.contact} className="btn btn--olive">
           Prendre rendez-vous
-        </Link>
-        <Link to={ROUTES.contact} className="btn btn--rose">
-          Discuter de mon projet
         </Link>
       </div>
     </section>
