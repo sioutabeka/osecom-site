@@ -1,9 +1,17 @@
 import { Link } from "react-router-dom";
+import MorphHeadline from "../components/MorphHeadline";
 import Placeholder from "../components/Placeholder";
+import WordRotator from "../components/WordRotator";
 import { ROUTES } from "../config/routes";
 import { SOCIALS } from "../config/site";
 import logo from "../../assets/logo-osecom.png";
 import instaScreen from "../../assets/instagram-screen.webp";
+
+const UGC_HERO_WORDS = ["Influencing", "Storytelling", "Creating", "Engaging"];
+const UGC_HERO_LINES = [
+  "Content",
+  ["& ", <WordRotator key="rot" words={UGC_HERO_WORDS} />, "."],
+];
 
 const PILL_TONES = {
   Instagram: "rose",
@@ -76,10 +84,7 @@ function UgcHero() {
     <section className="ugc-hero">
       <div className="ugc-hero__text">
         <span className="mono">CONTENT & INFLUENCING</span>
-        <h1>
-          Content
-          <br />& Influencing.
-        </h1>
+        <MorphHeadline lines={UGC_HERO_LINES} accentIdx={-1} />
         <p>
           Je crée du contenu qui mêle design, lifestyle et tout ce qui gravite
           autour — esthétique, créatif et pensé pour vraiment capter
