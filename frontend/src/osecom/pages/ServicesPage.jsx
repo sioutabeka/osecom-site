@@ -1,7 +1,19 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import aboutHero from "../../assets/about-hero.jpg";
 import IconArrow from "../components/IconArrow";
+import MorphHeadline from "../components/MorphHeadline";
+import WordRotator from "../components/WordRotator";
+import { useHeroDrift } from "../lib/hooks";
 import { SERVICES } from "../data/services";
 import { ROUTES } from "../config/routes";
+
+const SRV_HERO_WORDS = ["croissance", "audience", "engagement", "ventes"];
+const SRV_HERO_LINES = [
+  "Accélérez votre",
+  [<WordRotator key="rot" words={SRV_HERO_WORDS} />],
+  "sur les réseaux sociaux.",
+];
 
 export default function ServicesPage() {
   return (
@@ -18,24 +30,37 @@ export default function ServicesPage() {
 }
 
 function ServicesHero() {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const mediaRef = useRef(null);
+  useHeroDrift(sectionRef, textRef, mediaRef);
+
   return (
-    <section className="srv-hero">
-      <span className="mono">SOCIAL GROWTH ISN'T AN OPTION</span>
-      <h1 className="srv-hero__title">
-        Accélérez votre croissance en utilisant les réseaux sociaux !
-      </h1>
-      <p>
-        La stratégie d'image, de communication et de marketing digital est le
-        cœur de tout business qui fonctionne aujourd'hui.{" "}
-        <strong>Explorer le bon levier</strong> selon vos objectifs et vos
-        besoins.
-      </p>
-      <p className="srv-hero__note">
-        Mes offres sont à titre indicatif, le mieux c'est qu'on en discute.
-      </p>
-      <Link to={ROUTES.contact} className="btn btn--rose">
-        Discuter de mon projet
-      </Link>
+    <section className="srv-hero" ref={sectionRef}>
+      <div className="srv-hero__row">
+        <div className="srv-hero__col-text" ref={textRef}>
+          <span className="mono">SOCIAL GROWTH ISN'T AN OPTION</span>
+          <MorphHeadline lines={SRV_HERO_LINES} accentIdx={-1} />
+          <p>
+            La stratégie d'image, de communication et de marketing digital est
+            le cœur de tout business qui fonctionne aujourd'hui.{" "}
+            <strong>Explorer le bon levier</strong> selon vos objectifs et vos
+            besoins.
+          </p>
+          <p className="srv-hero__note">
+            Mes offres sont à titre indicatif, le mieux c'est qu'on en discute.
+          </p>
+          <Link to={ROUTES.contact} className="btn btn--rose">
+            Discuter de mon projet
+          </Link>
+        </div>
+
+        <div className="srv-hero__col-media" ref={mediaRef}>
+          <div className="srv-hero__media">
+            <img src={aboutHero} alt="Services OseCom" className="srv-hero__img" />
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

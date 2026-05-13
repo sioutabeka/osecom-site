@@ -54,12 +54,16 @@
 
 /* ── Morphing headline (per-char enter animation) ─────────── */
 .morph{
-  font-family:var(--serif); font-weight:500;
-  font-size:clamp(44px, 7vw, 92px);
-  line-height:.92; letter-spacing:-.035em;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(40px, 7.5vw, 88px);
+  line-height:1; letter-spacing:-.02em;
   color:var(--brown); margin:24px 0 36px;
+  word-break:keep-all; hyphens:none;
 }
-.morph__line{ display:block; overflow:hidden; }
+.morph__line{ display:block; overflow:hidden; padding-bottom:.08em; }
+.morph__word{ display:inline-block; white-space:nowrap; }
+.morph__space{ display:inline-block; white-space:pre; }
 .morph__ch{
   display:inline-block;
   animation:char-in .9s cubic-bezier(.2,.7,.2,1) both;
@@ -69,6 +73,37 @@
 @keyframes char-in{
   0%{ transform:translateY(110%); opacity:0; }
   100%{ transform:translateY(0); opacity:1; }
+}
+
+/* Inline word cycler used inside the morph headline */
+.morph__seg{ display:inline-block; }
+.word-rot{
+  position:relative;
+  display:inline-block;
+  vertical-align:baseline;
+  font-family:var(--serif);
+  font-style:italic;
+  font-weight:500;
+}
+.word-rot__item{
+  display:inline-block;
+  will-change:transform, opacity;
+}
+.word-rot__item--in{
+  animation:word-in .6s cubic-bezier(.2,.7,.2,1) both;
+}
+.word-rot__item--out{
+  position:absolute; left:0; top:0;
+  pointer-events:none;
+  animation:word-out .6s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes word-in{
+  0%{ transform:translateY(35%); opacity:0; }
+  100%{ transform:translateY(0); opacity:1; }
+}
+@keyframes word-out{
+  0%{ transform:translateY(0); opacity:1; }
+  100%{ transform:translateY(-35%); opacity:0; }
 }
 
 /* ── Reveal-on-scroll ─────────────────────────────────────── */

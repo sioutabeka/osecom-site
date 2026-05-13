@@ -1,10 +1,21 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import MorphHeadline from "../components/MorphHeadline";
 import Placeholder from "../components/Placeholder";
 import PortfolioStrip from "../components/PortfolioStrip";
 import ServicesOffer from "../components/ServicesOffer";
+import WordRotator from "../components/WordRotator";
+import { useHeroDrift } from "../lib/hooks";
 import { ROUTES } from "../config/routes";
 import aboutHero from "../../assets/about-hero.jpg";
 import aboutStory from "../../assets/about-story.jpg";
+
+const ABOUT_HERO_WORDS = ["content", "strategy", "storytelling", "design"];
+const ABOUT_HERO_LINES = [
+  "I help brands",
+  "grow through",
+  [<WordRotator key="rot" words={ABOUT_HERO_WORDS} />, "."],
+];
 
 const FACTS = [
   ["BASÉE À PARIS 🇫🇷", "Disponible remote"],
@@ -23,23 +34,7 @@ const PILLARS = [
 export default function AboutPage() {
   return (
     <main className="page page--about">
-      <section className="about-hero">
-        <div className="about-hero__text">
-          <span className="mono">HI, MOI C'EST ESSIA</span>
-          <h1>I help brands grow through content.</h1>
-          <p>
-            J'aide les marques à développer leur présence en ligne grâce à une
-            stratégie claire et du contenu qui capte vraiment l'attention.
-          </p>
-          <Link to={ROUTES.contact} className="btn btn--olive about-hero__cta">
-            Work with me
-          </Link>
-        </div>
-        <div className="about-hero__portrait" data-parallax="0.1">
-          <Placeholder ratio="4/5" src={aboutHero} alt="Portrait d'Essia" />
-          <p className="about-hero__caption mono">Meet Essia</p>
-        </div>
-      </section>
+      <AboutHero />
 
       <section className="about-philo about-philo--with-media" data-reveal>
         <div className="about-philo__media">
@@ -116,5 +111,38 @@ export default function AboutPage() {
         </Link>
       </section>
     </main>
+  );
+}
+
+function AboutHero() {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const mediaRef = useRef(null);
+  useHeroDrift(sectionRef, textRef, mediaRef);
+
+  return (
+    <section className="about-hero" ref={sectionRef}>
+      <div className="about-hero__row">
+        <div className="about-hero__col-text" ref={textRef}>
+          <span className="mono">HI, MOI C'EST ESSIA</span>
+          <MorphHeadline lines={ABOUT_HERO_LINES} accentIdx={-1} />
+          <p>
+            J'aide les marques à développer leur présence en ligne grâce à une
+            stratégie claire et du contenu qui capte vraiment l'attention.
+          </p>
+          <Link to={ROUTES.contact} className="btn btn--olive about-hero__cta">
+            Work with me
+          </Link>
+        </div>
+        <div className="about-hero__col-media" ref={mediaRef}>
+          <div className="about-hero__media">
+            <img src={aboutHero} alt="Portrait d'Essia" className="about-hero__img" />
+          </div>
+          <div className="about-hero__chip">
+            <span className="mono">meet essia</span>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

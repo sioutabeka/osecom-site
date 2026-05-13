@@ -1,14 +1,23 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
+import essiaHome from "../../assets/essiahome.webp";
 import DualPromise from "../components/DualPromise";
 import IconArrow from "../components/IconArrow";
 import MorphHeadline from "../components/MorphHeadline";
 import PinnedServices from "../components/PinnedServices";
 import PortfolioStrip from "../components/PortfolioStrip";
 import ServicesOffer from "../components/ServicesOffer";
+import WordRotator from "../components/WordRotator";
+import { useHeroDrift } from "../lib/hooks";
 import { ROUTES } from "../config/routes";
 import { BRANDS } from "../config/site";
 
-const HERO_LINES = ["Je transforme ", "vos contenus", "en client."];
+const HERO_LAST_WORDS = ["client", "lead", "revenus", "assets"];
+const HERO_LINES = [
+  "Je transforme ",
+  "vos contenus",
+  ["en ", <WordRotator key="rot" words={HERO_LAST_WORDS} />, "."],
+];
 
 const SIGNATURE_PILLARS = [
   { title: "Stratégie", text: "Benchmark, positionnement, ligne éditoriale et direction visuelle." },
@@ -36,37 +45,51 @@ export default function HomePage() {
 }
 
 function Hero() {
+  const sectionRef = useRef(null);
+  const textRef = useRef(null);
+  const mediaRef = useRef(null);
+  useHeroDrift(sectionRef, textRef, mediaRef);
+
   return (
-    <section className="hero">
-      <div className="hero__meta">
-        <span className="mono">HI · MOI C'EST ESSIA aka Siouta</span>
-        <span className="mono"> · Freelance à PARIS</span>
-      </div>
+    <section className="hero" ref={sectionRef}>
+      <div className="hero__row">
+        <div className="hero__col-text" ref={textRef}>
+          <div className="hero__meta">
+            <span className="mono">HI · MOI C'EST ESSIA aka Siouta</span>
+            <span className="mono"> · Freelance à PARIS</span>
+          </div>
 
-      <MorphHeadline lines={HERO_LINES} accentIdx={-1} />
+          <MorphHeadline lines={HERO_LINES} accentIdx={-1} />
 
-      <div className="hero__base">
-        <p className="hero__sub">
-          Community management, stratégie, production de contenus orientés
-          performance.
-          <br />
-          J'aide les marques à construire une présence claire, cohérente et
-          désirable.
-        </p>
+          <div className="hero__base">
+            <p className="hero__sub">
+              Community management, stratégie, production de contenus orientés
+              performance.
+              <br />
+              J'aide les marques à construire une présence claire, cohérente et
+              désirable.
+            </p>
 
-        <div className="hero__cta">
-          <Link to={ROUTES.contact} className="btn btn--olive">
-            Prendre rendez-vous
-          </Link>
-          <Link to={ROUTES.services} className="btn btn--ghost">
-            Voir mes offres
-            <IconArrow />
-          </Link>
+            <div className="hero__cta">
+              <Link to={ROUTES.contact} className="btn btn--olive">
+                Prendre rendez-vous
+              </Link>
+              <Link to={ROUTES.services} className="btn btn--ghost">
+                Voir mes offres
+                <IconArrow />
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div className="hero__chip hero__chip--2" data-parallax="0.25">
-        <span className="mono">stratégie · contenu · performance</span>
+        <div className="hero__col-media" ref={mediaRef}>
+          <div className="hero__media">
+            <img src={essiaHome} alt="Essia — OseCom" className="hero__img" />
+          </div>
+          <div className="hero__chip hero__chip--2">
+            <span className="mono">stratégie · contenu · performance</span>
+          </div>
+        </div>
       </div>
     </section>
   );
